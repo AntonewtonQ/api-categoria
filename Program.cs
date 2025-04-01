@@ -7,18 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CategoriaContext>(options =>
-    options.UseInMemoryDatabase("CategoriaDb"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("default")));
 
-/*
-builder.Services.AddDbContext<CategoriaContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("default")));*/
+
 builder.Services.AddControllers();
-
-builder.Services.AddLogging(config =>
-{
-    config.AddConsole();
-    config.SetMinimumLevel(LogLevel.Debug); // Para capturar mais detalhes
-});
 
 var app = builder.Build();
 
