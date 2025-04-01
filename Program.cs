@@ -14,6 +14,12 @@ builder.Services.AddDbContext<CategoriaContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("default")));*/
 builder.Services.AddControllers();
 
+builder.Services.AddLogging(config =>
+{
+    config.AddConsole();
+    config.SetMinimumLevel(LogLevel.Debug); // Para capturar mais detalhes
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
